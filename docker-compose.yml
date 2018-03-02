@@ -1,0 +1,19 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:9.6'
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=app
+  app:
+    build: '.'
+    ports: 
+      - 3000:3000
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    environment:
+      - PG_USER=app
+      - PG_PASSWORD=app
+      - PG_HOST=postgres
