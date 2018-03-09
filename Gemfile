@@ -26,6 +26,11 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'pundit'
 gem 'rack-cors'
 
+group :production do
+  gem 'oj', '~> 2.16.1'
+  gem 'rollbar'
+end
+
 group :development, :test do
   gem 'bullet'
   gem 'dotenv-rails'

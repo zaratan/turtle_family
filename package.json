@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "precommit": "rspec --format progress"
+    "precommit": "rspec --format progress && rubocop"
   },
   "dependencies": {
     "husky": "^0.14.3"
