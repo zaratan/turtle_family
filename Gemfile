@@ -33,6 +33,7 @@ group :production do
   gem 'logstash-logger'
   gem 'oj', '~> 2.16.1'
   gem 'rollbar'
+  gem "skylight"
 end
 
 group :development, :test do
