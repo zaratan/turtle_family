@@ -67,3 +67,21 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+if ENV['CIRCLE_ARTIFACTS']
+  dir = File.join(ENV['CIRCLE_ARTIFACTS'], "coverage")
+  SimpleCov.coverage_dir(dir)
+end
+
+SimpleCov.at_exit do
+  SimpleCov.result.format!
+  SimpleCov.minimum_coverage 90
+  SimpleCov.minimum_coverage_by_file 80
+  SimpleCov.maximum_coverage_drop 5
+end
+
+SimpleCov.start 'rails' do
+  add_filter do |source_file|
+    source_file.lines.count < 5
+  end
+end

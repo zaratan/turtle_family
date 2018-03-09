@@ -48,7 +48,7 @@ group :test do
   gem "nyan-cat-formatter"
   gem "rspec_junit_formatter"
   gem 'shoulda-matchers', '~> 3.0'
-  gem 'simplecov', require: false
+  gem 'simplecov'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
