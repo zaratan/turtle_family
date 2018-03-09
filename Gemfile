@@ -25,8 +25,12 @@ gem 'puma', '~> 3.7'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'pundit'
 gem 'rack-cors'
+gem 'rack-timeout', '~> 0.4'
 
 group :production do
+  gem 'lograge'
+  gem "logstash-event"
+  gem 'logstash-logger'
   gem 'oj', '~> 2.16.1'
   gem 'rollbar'
 end

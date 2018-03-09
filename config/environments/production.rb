@@ -41,7 +41,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
@@ -66,17 +66,27 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Logstash.new
+  config.lograge.base_controller_class = 'ActionController::API'
+  config.lograge.logger = ActiveSupport::Logger.new(STDOUT)
+  config.lograge.custom_options = lambda do |event|
+    {
+      tags: [event.payload[:headers]["action_dispatch.request_id"]],
+      params: event.payload[:params],
+    }
   end
+
+  config.logger = LogStashLogger.new(type: :stdout)
+
+  Rack::Timeout::StateChangeLoggingObserver::STATE_LOG_LEVEL[:ready] = :debug
+  Rack::Timeout::StateChangeLoggingObserver::STATE_LOG_LEVEL[:completed] = :debug
+  Rack::Timeout::Logger.logger = config.logger
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
