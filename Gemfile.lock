@@ -54,6 +54,7 @@ GEM
       activesupport
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     crass (1.0.3)
     diff-lcs (1.3)
     docile (1.1.5)
@@ -70,6 +71,8 @@ GEM
     faker (1.8.7)
       i18n (>= 0.7)
     ffi (1.9.23)
+    figaro (1.1.1)
+      thor (~> 0.14)
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -142,6 +145,8 @@ GEM
       activesupport (>= 3.0.0)
     rack (2.0.4)
     rack-cors (1.0.2)
+    rack-protection (2.0.1)
+      rack
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rack-timeout (0.4.2)
@@ -173,6 +178,7 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redis (4.0.1)
     request_store (1.4.0)
       rack (>= 1.4)
     rollbar (2.15.5)
@@ -212,6 +218,11 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
+    sidekiq (5.1.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     simplecov (0.15.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -250,6 +261,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  figaro
   guard-rspec
   listen (>= 3.0.5, < 3.2)
   lograge
@@ -270,6 +282,7 @@ DEPENDENCIES
   rspec_junit_formatter
   rubocop
   shoulda-matchers (~> 3.0)
+  sidekiq
   simplecov
   skylight
   spring
