@@ -16,6 +16,7 @@ jobs:
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: circle-test_test
+      - image: redis
 
     steps:
       - checkout
