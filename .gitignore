@@ -15,3 +15,6 @@
 
 .byebug_history
 coverage
+
+# Ignore application configuration
+/config/application.yml

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TurtlesController, type: :controller do
+RSpec.describe V1::TurtlesController, type: :controller do
   describe "#create" do
     let(:name) { Faker::StarWars.character }
     let(:color) { "rouge" }

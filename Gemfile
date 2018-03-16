@@ -26,6 +26,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'pundit'
 gem 'rack-cors'
 gem 'rack-timeout', '~> 0.4'
+gem 'sidekiq'
 
 group :production do
   gem 'lograge'
@@ -39,6 +40,7 @@ end
 group :development, :test do
   gem 'bullet'
   gem 'dotenv-rails'
+  gem "figaro"
   gem 'pry-byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.6'
